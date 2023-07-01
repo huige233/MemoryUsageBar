@@ -33,10 +33,10 @@ public class MemoryHUdREnder {
             BufferBuilder bufferbuilder = tessellator.getBuffer();
             int i = (int) (totalMemoryPercent * 100);//←这里是计算动态的宽度
             int j = getHealthBarColor(totalMemory, maxMemory);//这里是计算颜色
-            draw(bufferbuilder, 2, y, 100, 10, 0, 0, 0, 502);//👈这里是底下那层灰色
-            draw(bufferbuilder, 1, y, i, 10, j >> 16 & 255, j >> 8 & 255, j & 255, 255);
+            draw(bufferbuilder, 2, y, 80, 0, 0, 0, 502);//👈这里是底下那层灰色
+            draw(bufferbuilder, 1, y, i, j >> 16 & 255, j >> 8 & 255, j & 255, 255);
             String memoryUsagePercentage = String.format("%.2f%%", (double)totalMemory / (double)runtime.maxMemory() * 100.0);
-            fontRenderer.drawString(memoryUsagePercentage, i, y-15, 0xF0F0F0, false);
+            fontRenderer.drawString(memoryUsagePercentage, i-3, y-12, 0xF0F0F0, false);
             GlStateManager.enableBlend();
             GlStateManager.enableAlpha();
         }
@@ -58,12 +58,12 @@ public class MemoryHUdREnder {
     }
 
 
-    private static void draw(BufferBuilder renderer, int x, int y, int width, int height, int red, int green, int blue, int alpha) {
+    private static void draw(BufferBuilder renderer, int x, int y, int width, int red, int green, int blue, int alpha) {
         renderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        renderer.pos((double) (x + 0), (double) (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + 0), (double) (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + width), (double) (y + height), 0.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + width), (double) (y + 0), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((double) (x), (double) (y), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((double) (x), (double) (y + 8), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((double) (x + width), (double) (y + 8), 0.0D).color(red, green, blue, alpha).endVertex();
+        renderer.pos((double) (x + width), (double) (y), 0.0D).color(red, green, blue, alpha).endVertex();
         Tessellator.getInstance().draw();
     }
 }

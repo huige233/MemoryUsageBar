@@ -23,7 +23,7 @@ apply plugin: "net.minecraftforge.gradle.forge"
 
 group = 'huige233'
 version = '1.0-SNAPSHOT'
-archivesBaseName = 'example'
+archivesBaseName = 'MemoryUsageBar'
 
 minecraft {
     version = project.forgeVersion
